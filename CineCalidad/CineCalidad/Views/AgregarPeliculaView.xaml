@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CineCalidad.ViewModels"
+             x:Class="CineCalidad.Views.AgregarPeliculaView"
+             Background="gray">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AgregarCommand}" IconImageSource="https://cdn-icons-png.flaticon.com/128/5505/5505549.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.BindingContext>
+        <viewmodels:PeliculasViewModel ></viewmodels:PeliculasViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout Margin="10,10,0,0">
+        <StackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+        </StackLayout.Resources>
+        <Label>Titulo:</Label>
+        <Entry Text="{Binding Pelicula.Titulo}"></Entry>
+        <Label >Genero:</Label>
+        <Entry Text="{Binding Pelicula.Genero}"></Entry>
+        <Label>Sala:</Label>
+        <Picker SelectedItem="{Binding Pelicula.Sala}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>A1</x:String>
+                    <x:String>B1</x:String>
+                    <x:String>A2</x:String>
+                    <x:String>B2</x:String>
+                    <x:String>A3</x:String>
+                    <x:String>B3</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Label>Duracion en Minutos:</Label>
+        <Entry Text="{Binding Pelicula.Duracion}" Keyboard="Numeric"></Entry>
+        <Label>Imagen (URL):</Label>
+        <Editor Text="{Binding Pelicula.Imagen}" AutoSize="TextChanges"></Editor>
+        
+        <Label Text="{Binding Error}" TextColor="Red" FontSize="Caption" Margin="0,20,0,0"></Label>
+
+    </StackLayout>
+</ContentPage>

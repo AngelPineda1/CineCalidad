@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:CineCalidad.ViewModels"
+             x:Class="CineCalidad.Views.ListaPeliculasView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding CambiarVistaCommand}" CommandParameter="Agregar" IconImageSource="https://cdn-icons-png.flaticon.com/128/1237/1237946.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewmodels:PeliculasViewModel x:Name="pvm"></viewmodels:PeliculasViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout >
+
+        <ScrollView >
+            <StackLayout HorizontalOptions="Center" >
+                <Grid WidthRequest="500" HorizontalOptions="Center" Background="Blue" HeightRequest="50">
+                    <Label FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" >Cine Calidad</Label>
+                    <Image Source="https://cdn-icons-png.flaticon.com/128/1101/1101793.png" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"></Image>
+                </Grid>
+
+                <Frame VerticalOptions="CenterAndExpand" HeightRequest="950" WidthRequest="350" HorizontalOptions="Center" Margin="0,-5,0,0" BackgroundColor="LightBlue">
+                    <FlexLayout BindableLayout.ItemsSource="{Binding Peliculas}" Direction="Row" Wrap="Wrap" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  HeightRequest="130" WidthRequest="110" Margin="5,10,0,0">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference pvm}, Path=MostrarDetallesCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Grid.GestureRecognizers>
+                                        <Image Source="{Binding Imagen}"  Aspect="Fill"></Image>
+                                    </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
